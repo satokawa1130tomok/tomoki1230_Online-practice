@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     //歩くスピードの最大値
     float maxWalkSpeed = 2.0f;
-    
+
 
     void Start()
     {
@@ -30,12 +31,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // ジャンプする
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             //↑×ジャンプする力
             this.rigid2D.AddForce(transform.up * this.jumpForce);
-            
-        }                                                                     
+
+        }
 
 
 
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
         if (speedx < this.maxWalkSpeed)
         {
             //(Key)   （歩く力）　      (Key)  (歩く力)
-            //  -   ×    +   =  -       +   ×   +   =   +
+            //  -   ×    +   =  -       + o  ×   +   =   +
             this.rigid2D.AddForce(transform.right * key * this.walkForce);
         }
 
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
         if (key != 0)
         {
             //catのtransformのScaleのxに-がつくかつかないか
-            transform.localScale= new Vector3(key, 1, 1);
+            transform.localScale = new Vector3(key, 1, 1);
         }
 
 
@@ -77,4 +78,16 @@ public class PlayerController : MonoBehaviour
         this.animator.speed = speedx / 2.0f;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "go-ru")
+        {
+            Debug.Log("ゴール");
+            SceneManager.LoadScene("ClearScene");
+        }
+    }
+
 }
+
+
+    
