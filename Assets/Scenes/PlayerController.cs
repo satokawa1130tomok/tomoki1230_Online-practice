@@ -31,12 +31,20 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // ジャンプする
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow)&& this.rigid2D.velocity.y == 0) 
+        
         {
-            //↑×ジャンプする力
-            this.rigid2D.AddForce(transform.up * this.jumpForce);
-
+            this.rigid2D.AddForce( transform.up * this.jumpForce);
         }
+        if(transform.position.y<-10)
+        {
+            SceneManager.LoadScene("GameScene");
+        }
+
+        
+
+            
+        
 
 
 
@@ -82,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "go-ru")
         {
-            Debug.Log("ゴール");
+            
             SceneManager.LoadScene("ClearScene");
         }
     }
