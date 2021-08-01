@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     //歩くスピードの最大値
     float maxWalkSpeed = 2.0f;
 
+    float threhold = 0.2f;
+
 
     void Start()
     {
@@ -31,27 +33,45 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // ジャンプする
-        if (Input.GetKeyDown(KeyCode.UpArrow)&& this.rigid2D.velocity.y == 0) 
+        if (Input.GetMouseButton(0) && this.rigid2D.velocity.y == 0 ) 
         
         {
-            this.rigid2D.AddForce( transform.up * this.jumpForce);
+            this.rigid2D.AddForce(transform.up * this.jumpForce);
         }
-        if(transform.position.y<-10)
+        //
+        if (transform.position.y < -10)
         {
             SceneManager.LoadScene("GameScene");
+
+        }
+        if (Input.GetKey(KeyCode.UpArrow) && this.rigid2D.velocity.y == 0)
+
+        {
+            this.rigid2D.AddForce(transform.up * this.jumpForce);
         }
 
-        
 
-            
-        
+
+
+
 
 
 
         // 左右移動
         int key = 0;
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.acceleration.x > this.threhold)
+        {
+            key = 1;
+        }
+
+
+        if (Input.acceleration.x < -this.threhold)
+        {
+            key = -1;
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow)) 
         {
             key = 1;
         }
@@ -90,7 +110,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "go-ru")
         {
-            
+
             SceneManager.LoadScene("ClearScene");
         }
     }
@@ -98,4 +118,4 @@ public class PlayerController : MonoBehaviour
 }
 
 
-    
+
