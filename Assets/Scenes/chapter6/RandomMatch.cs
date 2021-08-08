@@ -2,31 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon;
+using Photon.Pun;
 
-public class RandomMatch : MonoBehaviour
-{
-    // Start is called before the first frame update
+public class RandomMatch : MonoBehaviourPunCallbacks {
+
+
+    
     void Start()
     {
-        PhntonNetwork.ConnectUsingSettings("0.1");
-        PhntonNetwork.LogLecel = PhotnroLogLevel.Full;
+        PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.LogLevel = PunLogLevel.Full;
            
     }
+    
 
-    // Update is called once per frame
     void OnGUI()
     {
-        GUILayout.Label(PhntonNetwork.connectionStateDetailed.ToSring());)
+        GUILayout.Label(PhotonNetwork.NetworkClientState.ToString());
     }
-     public override void OnFoinefLobby()
+     public override void OnJoinedLobby()
     {
-        PhntonNetwork.JoinRandomRoom();
+        PhotonNetwork.JoinRandomRoom();//ランダムでルームに接続する
     }
 
-    public override void OnPhntonRandomJoinFailed(objecr[] codeAndMSG)
+    public override void OnJoinedRoom()
     {
-        PhntonNetwork.CreateRoom(null);
+        PhotonNetwork.CreateRoom(null);//ルームがなかったらルームを作る
+        Vector3 spawnPosition = new Vector3(Random.Range(-2, 2), -4.395f, 0);
+        PhotonNetwork.Instantiate("satPrefab", spawnPosition, Quaternion, identiy, 0);
     }
+  
 }
 
 
