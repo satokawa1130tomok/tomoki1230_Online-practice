@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour
     float maxWalkSpeed = 2.0f;
 
     float threhold = 0.2f;
+
+    public GameObject player;
 
 
     void Start()
@@ -104,6 +107,11 @@ public class PlayerController : MonoBehaviour
 
 
         this.animator.speed = speedx / 2.0f;
+
+        //if(player.y< -10)
+        //{
+        //    Debug.Log("dfdsd");
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -114,8 +122,9 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("ClearScene");
         }
     }
+   
+
+
+ 
 
 }
-
-
-
