@@ -47,7 +47,7 @@ public class RandomMatch : MonoBehaviourPunCallbacks {
     {
         //Debug.Log("aaa");
 
-        Vector3 spawnPosition = new Vector3(Random.Range(-2, 2), 0.395f, 0);
+        Vector3 spawnPosition = new Vector3(-2, 0);
         PhotonNetwork.Instantiate("cat", spawnPosition, Quaternion.identity, 0);
 
 
