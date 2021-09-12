@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     PhotonView myPhtonView;
 
+    public bool jumpFlg;
+
 
     void Start()
     {
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour
             {
                 this.rigid2D.AddForce(transform.up * this.jumpForce);
             }
-            //
+            
             if (transform.position.y < -10)
             {
                 SceneManager.LoadScene("GameScene");
@@ -58,10 +60,24 @@ public class PlayerController : MonoBehaviour
             {
                 this.rigid2D.AddForce(transform.up * this.jumpForce);
             }
+            
+            
+           //if (Input.GetKey(KeyCode.Space)&& this.rigid2D.velocity.y == 0)
+           // {
+           //     this.animator.SetTrigger("JumpTrigger");
+           //     this.rigid2D.AddForce(transform.up * this.jumpForce);
+           // }
 
+            
 
+            if(Input.GetKey(KeyCode.Space)&& this.rigid2D.velocity.y ==0)
+            {
+                this.jumpFlg = true;
 
+                this.animator.SetTrigger("jumpTriggr");
 
+                this.rigid2D.AddForce(transform.up * this.jumpForce);
+            }
 
 
 
