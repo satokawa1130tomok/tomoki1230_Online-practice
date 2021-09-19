@@ -9,4 +9,6 @@
 ***
 ### AddForcs
 力を加える。
+### GetComponent
+パーツを取得する。
  
