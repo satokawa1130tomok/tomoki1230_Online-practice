@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +7,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rigid2D;
 
-    Animator animator;
+    Animator  animator;
 
     //ジャンプする力
     float jumpForce = 655.0f;
@@ -28,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     public bool jumpFlg;
 
+    //Animator animator;
+
 
     void Start()
     {
@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
         this.animator = GetComponent<Animator>();
 
         this.myPhtonView = GetComponent<PhotonView>();
+
+
     }
 
     void Update()
@@ -74,11 +76,14 @@ public class PlayerController : MonoBehaviour
             {
                 this.jumpFlg = true;
 
-                this.animator.SetTrigger("jumpTriggr");
+                this.animator.SetBool ("jump Bool",true);
 
                 this.rigid2D.AddForce(transform.up * this.jumpForce);
+
+                Invoke("DelayMethod", 0.21f);
             }
 
+            
 
 
 
@@ -147,9 +152,15 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("ClearScene");
         }
     }
-   
 
 
- 
+    void DelayMethod()
+    {
+        this.animator.SetBool("jump Bool", false);
+    }
+
+
+
+
 
 }

@@ -12,7 +12,10 @@ public class RandomMatch : MonoBehaviourPunCallbacks {
     {
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.LogLevel = PunLogLevel.Full;
-           
+
+
+        
+
     }
     public override void OnConnectedToMaster()
     {

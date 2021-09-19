@@ -281,10 +281,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 2
+    Name: jump  Bool
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
+  - SynchronizeType: 1
+    LayerIndex: 1
 --- !u!114 &-7386308175368209121
 MonoBehaviour:
   m_ObjectHideFlags: 0
