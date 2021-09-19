@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
         this.myPhtonView = GetComponent<PhotonView>();
 
+        this.jumpFlg = false;
+
 
     }
 
