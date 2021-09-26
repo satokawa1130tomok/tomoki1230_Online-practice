@@ -64,33 +64,39 @@ public class PlayerController : MonoBehaviour
             {
                 this.rigid2D.AddForce(transform.up * this.jumpForce);
             }
-            
-            
-           //if (Input.GetKey(KeyCode.Space)&& this.rigid2D.velocity.y == 0)
-           // {
-           //     this.animator.SetTrigger("JumpTrigger");
-           //     this.rigid2D.AddForce(transform.up * this.jumpForce);
-           // }
 
-            
 
-            if(Input.GetKey(KeyCode.Space)&& this.rigid2D.velocity.y ==0)
+            //if (Input.GetKey(KeyCode.Space)&& this.rigid2D.velocity.y == 0)
+            // {
+            //     this.animator.SetTrigger("JumpTrigger");
+            //     this.rigid2D.AddForce(transform.up * this.jumpForce);
+            // }
+
+
+
+            if (Input.GetKeyDown(KeyCode.Space) ) //this.rigid2D.velocity.y == 0)
             {
                 this.jumpFlg = true;
 
                 this.animator.SetBool ("jump Bool",true);
 
                 this.rigid2D.AddForce(transform.up * this.jumpForce);
+                //Debug.Log("a");
 
-                Invoke("DelayMethod", 0.21f);
+                
             }
 
-            
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+
+                this.animator.SetBool ( "jump Bool", false);
+                //Debug.Log("!");
+            }
 
 
 
-            // 左右移動
-            int key = 0;
+                // 左右移動
+                int key = 0;
 
             if (Input.acceleration.x > this.threhold)
             {
@@ -135,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-            this.animator.speed = speedx / 2.0f;
+            //this.animator.speed = speedx / 2.0f;
 
             //if(player.y< -10)
             //{
@@ -156,10 +162,10 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void DelayMethod()
-    {
-        this.animator.SetBool("jump Bool", false);
-    }
+    //void DelayMethod()
+    //{
+    //    this.animator.SetBool("jump Bool", false);
+    //}
 
 
 
