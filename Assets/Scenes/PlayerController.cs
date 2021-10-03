@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rigid2D;
 
-    Animator  animator;
+    //Animator  animator;
 
     //ジャンプする力
     float jumpForce = 655.0f;
@@ -28,13 +28,15 @@ public class PlayerController : MonoBehaviour
 
     //Animator animator;
 
+    [SerializeField] Animator anim;
+
 
     void Start()
     {
         //Rigidbody2D取得する
         this.rigid2D = GetComponent<Rigidbody2D>();
 
-        this.animator = GetComponent<Animator>();
+        this.anim = GetComponent<Animator>();
 
         this.myPhtonView = GetComponent<PhotonView>();
 
@@ -74,24 +76,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-            if (Input.GetKeyDown(KeyCode.Space) ) //this.rigid2D.velocity.y == 0)
-            {
-                this.jumpFlg = true;
-
-                this.animator.SetBool ("jump Bool",true);
-
-                this.rigid2D.AddForce(transform.up * this.jumpForce);
-                //Debug.Log("a");
-
-                
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-
-                this.animator.SetBool ( "jump Bool", false);
-                //Debug.Log("!");
-            }
+            
 
 
 
@@ -143,11 +128,37 @@ public class PlayerController : MonoBehaviour
 
             //this.animator.speed = speedx / 2.0f;
 
-            //if(player.y< -10)
-            //{
-            //    Debug.Log("dfdsd");
-            //}
+           
+
+            if (Input.GetKeyDown(KeyCode.UpArrow)) //this.rigid2D.velocity.y == 0)
+            {
+
+                //this.jumpFlg = true;
+
+                //this.animator.SetBool ("jump Bool",true);
+
+                //this.rigid2D.AddForce(transform.up * this.jumpForce);
+                ////Debug.Log("a");
+
+                //transform.position += transform.forward * 0.03f;
+                anim.SetBool("jumpBool", true);
+                Debug.Log("ON");
+
+
+            }
+
+            if (Input.GetKeyUp(KeyCode.UpArrow))
+            {
+
+                //this.animator.SetBool ( "jump Bool", false);
+                //Debug.Log("!");
+                //transform.position += transform.forward * 0.03f;
+                anim.SetBool("jumpBool", false);
+                Debug.Log("OFF");
+            }
         }
+
+        
     }
       
         
