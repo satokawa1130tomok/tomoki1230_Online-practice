@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(this.myPhtonView.IsMine)
+        if (this.myPhtonView.IsMine)
         {
             // ジャンプする
             if (Input.GetMouseButton(0) && this.rigid2D.velocity.y == 0)
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
             {
                 this.rigid2D.AddForce(transform.up * this.jumpForce);
             }
-            
+
             if (transform.position.y < -10)
             {
                 SceneManager.LoadScene("GameScene");
@@ -76,12 +76,12 @@ public class PlayerController : MonoBehaviour
 
 
 
-            
 
 
 
-                // 左右移動
-                int key = 0;
+
+            // 左右移動
+            int key = 0;
 
             if (Input.acceleration.x > this.threhold)
             {
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
             //this.animator.speed = speedx / 2.0f;
 
-           
+        
 
             if (Input.GetKeyDown(KeyCode.UpArrow)) //this.rigid2D.velocity.y == 0)
             {

@@ -6,6 +6,7 @@ using Photon.Pun;
 
 public class RandomMatch : MonoBehaviourPunCallbacks {
 
+    public GameObject Player;
 
     
     void Start()
@@ -53,6 +54,7 @@ public class RandomMatch : MonoBehaviourPunCallbacks {
         Vector3 spawnPosition = new Vector3(-2, 0);
         PhotonNetwork.Instantiate("cat", spawnPosition, Quaternion.identity, 0);
 
+        Player.tag = "cat";
 
     }
 
